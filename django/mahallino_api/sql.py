@@ -81,7 +81,7 @@ class PostConn:
         BUsline = []
         for item in busline:
             BUsline.append({"dist": item.distance.m, "source": item.origin, "destination": item.destinatio,
-                            "coor": json.loadloads(item.geom.json)})
+                            "coor": json.loads(item.geom.json)})
             # print(type(json.loads(item.geom.json)))
             # index = index + 1
         BUSLINE = {"title": "BUSLINE", "id": 305, "value": BUsline}
