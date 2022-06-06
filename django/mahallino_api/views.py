@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib import messages
 from django.contrib.auth.models import User
-from . import tasks
-from config.celery_conf import celery_app
 import json
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .sql import PostConn
@@ -15,7 +13,6 @@ from django.contrib.gis.geos import Point
 import jwt
 from django.conf import settings
 import ast
-from .load import brt_line
 from django.core.serializers import serialize
 
 
@@ -45,9 +42,9 @@ class PerTrans(APIView):
 
     def post(self, request):
 
-        user = user_return(request)
-        if not bool(user):
-            return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
+        # user = user_return(request)
+        # if not bool(user):
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
 
         lat = request.data.get('lat')
         lon = request.data.get('lon')
@@ -58,7 +55,7 @@ class PerTrans(APIView):
         lat = float(lat)
         lon = float(lon)
 
-        data = PostConn(lat , lon).pertrans()
+        data = PostConn(lat, lon).pertrans()
         return Response(data=data, status=status.HTTP_200_OK, headers=headers)
 
 
@@ -67,9 +64,9 @@ class PubTrans(APIView):
 
     def post(self, request):
 
-        user = user_return(request)
-        if not bool(user):
-            return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
+        # user = user_return(request)
+        # if not bool(user):
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
 
         lat = request.data.get('lat')
         lon = request.data.get('lon')
@@ -80,7 +77,7 @@ class PubTrans(APIView):
         lat = float(lat)
         lon = float(lon)
 
-        data = PostConn(lat,lon).pubtrans()
+        data = PostConn(lat, lon).pubtrans()
         return Response(data=data , status=status.HTTP_200_OK, headers=headers)
 
 
@@ -89,9 +86,9 @@ class Refahi(APIView):
 
     def post(self, request):
 
-        user = user_return(request)
-        if not bool(user):
-            return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
+        # user = user_return(request)
+        # if not bool(user):
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
 
         lat = request.data.get('lat')
         lon = request.data.get('lon')
@@ -102,8 +99,8 @@ class Refahi(APIView):
         lat = float(lat)
         lon = float(lon)
 
-        data = PostConn(lat , lon).refahi()
-        return Response(data=data , status=status.HTTP_200_OK, headers=headers)
+        data = PostConn(lat, lon).refahi()
+        return Response(data=data, status=status.HTTP_200_OK, headers=headers)
 
 
 class Security(APIView):
@@ -111,9 +108,9 @@ class Security(APIView):
 
     def post(self, request):
 
-        user = user_return(request)
-        if not bool(user):
-            return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
+        # user = user_return(request)
+        # if not bool(user):
+        #     return Response(status=status.HTTP_401_UNAUTHORIZED, headers=headers)
 
         lat = request.data.get('lat')
         lon = request.data.get('lon')

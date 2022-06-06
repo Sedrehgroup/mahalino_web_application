@@ -7,29 +7,12 @@ from .models import Transport , Bohran , Bus , Busline  , Roads , Hospital, Fire
 import json
 from django.core.serializers import serialize
 
-class PostConn():
-    def __init__(self , lat , lon):
+
+class PostConn:
+    def __init__(self, lat, lon):
         self.lat = lat
         self.lon = lon
-        self.pnt = Point(self.lon , self.lat , srid=4326)
-
-    def db_conn(self):
-
-        # roads = Roads.objects.annotate(distance=Distance('geom' , self.pnt)).order_by('distance')[:3]
-        # index = 1
-        # ROADS = {}
-        # for item in roads:
-        #     ROADS[str(index)] = {"dist" : item.distance.m  , "name" : item.name , "coor" : json.loads(item.geom.json) }
-        #     # print(type(json.loads(item.geom.json)))
-        #     index = index + 1
-
-
-        # aludegi_model = Aludegi.objects.annotate(distance=Distance('geom' , self.pnt)).order_by('distance')[:3]
-        # aludegi_data = []
-        # for item in aludegi_model:
-        #     aludegi_data.append()
-
-        return data
+        self.pnt = Point(self.lon, self.lat, srid=4326)
 
     def pertrans(self):
         data = []
@@ -98,7 +81,7 @@ class PostConn():
         BUsline = []
         for item in busline:
             BUsline.append({"dist": item.distance.m, "source": item.origin, "destination": item.destinatio,
-                            "coor": json.loads(item.geom.json)})
+                            "coor": json.loadloads(item.geom.json)})
             # print(type(json.loads(item.geom.json)))
             # index = index + 1
         BUSLINE = {"title": "BUSLINE", "id": 305, "value": BUsline}
