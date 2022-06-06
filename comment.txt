@@ -1,0 +1,2 @@
+sudo docker exec -i -u postgres mahallino_postgis psql -U postgres mahallino < mahallino.sql
+
